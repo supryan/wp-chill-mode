@@ -1,0 +1,1 @@
+# wp-maint-mode
