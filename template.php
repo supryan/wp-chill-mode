@@ -6,7 +6,7 @@
 *
 */
 
-echo '<script src="/content/plugins/'. basename(__DIR__) .'/js/main.min.js"></script>'; ?>
+echo '<script src="/content/plugins/'. basename(__DIR__) .'/js/main.js"></script>'; ?>
 
 <h1>
   <a href="#" target="_blank">
