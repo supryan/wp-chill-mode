@@ -5,3 +5,4 @@
 
 ---
 Originally built off the Slim Maintenance Mode plugin developed by [Johannes Ries](https://github.com/wpdocde/slim-maintenance-mode).
+Custom template and css/js additions by [Ryan Gordon](http://supryan.com).
