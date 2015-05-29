@@ -1,1 +1,1 @@
-# wp-maint-mode
+# Chill Mode
