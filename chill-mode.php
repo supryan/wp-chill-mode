@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Chill Mode
- * Description: A lightweight solution for scheduled maintenance. Simply activate the plugin and only administrators can see the website.
+ * Description: A lightweight solution for manual maintenance. Simply activate the plugin and only administrators can see the website.
  * Edit the bottom function to display whatever you want in the default wp_die() function.
  * Version: 0.1
  */
@@ -15,7 +15,7 @@ defined('ABSPATH') or die("No direct requests for security reasons.");
  * Activation and deactivation with Cache Support
 */
 
-function slim_maintenance_mode_on_activation()  {
+function chillModeActivation()  {
   if ( ! current_user_can( 'activate_plugins' ) )
   return;
   $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
@@ -39,7 +39,7 @@ function slim_maintenance_mode_on_activation()  {
     }
 }
 
-function slim_maintenance_mode_on_deactivation() {
+function chillModeDeactivation() {
   if ( ! current_user_can( 'activate_plugins' ) )
   return;
   $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
@@ -63,18 +63,18 @@ function slim_maintenance_mode_on_deactivation() {
   }
 }
 
-register_activation_hook(   __FILE__, 'slim_maintenance_mode_on_activation' );
-register_deactivation_hook( __FILE__, 'slim_maintenance_mode_on_deactivation' );
+register_activation_hook(   __FILE__, 'chillModeActivation' );
+register_deactivation_hook( __FILE__, 'chillModeDeactivation' );
 
 /**
  * Alert message when active
 */
-function smm_admin_notices() {
+function chillModeAdminAlert() {
 	echo '<div id="message" class="error fade"><p>' . __( '<strong>Maintenance mode</strong> is <strong>active</strong>!', 'maintenance-mode' ) . ' <a href="plugins.php#maintenance-mode">' . __( 'Deactivate it, when work is done.', 'maintenance-mode' ) . '</a></p></div>';
 }
 if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) )
-add_action( 'network_admin_notices', 'smm_admin_notices' );
-add_action( 'admin_notices', 'smm_admin_notices' );
+add_action( 'network_admin_notices', 'chillModeAdminAlert' );
+add_action( 'admin_notices', 'chillModeAdminAlert' );
 add_filter( 'login_message',
 	function() {
 		return '<div id="login_error">' . __( '<strong>Maintenance mode</strong> is active!', 'maintenance-mode' ) . '</div>';
@@ -83,7 +83,7 @@ add_filter( 'login_message',
 /**
  * Maintenance message when active
 */
-function slim_maintenance_mode() {
+function chillMode() {
   nocache_headers();
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
@@ -92,6 +92,6 @@ function slim_maintenance_mode() {
     wp_die(''. $templatePath .''. $pluginPath .''. file_get_contents(''. plugin_dir_url( __FILE__ ) . 'template.php' .'') .'', 'We\'ll be right back.' , array('response' => 503));
   }
 }
-add_action('get_header', 'slim_maintenance_mode');
+add_action('get_header', 'chillMode');
 
 ?>
