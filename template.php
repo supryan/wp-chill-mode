@@ -42,7 +42,7 @@
         echo $scripts;
       echo '</script>';
     } else {
-       echo '<script type="text/javascript" src="/content/plugins/'. basename(__DIR__) .'/js/main.js">';
+       echo '<script type="text/javascript" src="/content/plugins/'. basename(__DIR__) .'/js/main.js"></script>';
     } ?>
 
   </body>
