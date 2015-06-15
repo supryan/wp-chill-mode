@@ -1,7 +1,7 @@
 <?php
 /*
 *
-* Chill Mode - Template
+* Chill Mode - Custom Template
 * Description: The template markup and assets paths.
 *
 */ ?>

@@ -2,8 +2,7 @@
 /**
  * Plugin Name: Chill Mode
  * Description: A lightweight solution for manual maintenance. Simply activate the plugin and only administrators can see the website.
- * Edit the bottom function to display whatever you want in the default wp_die() function.
- * Version: 0.1
+ * Version: 0.2
  */
 
 /**
@@ -113,6 +112,10 @@ function wp_killer($heading, $message, $title, $styles, $scripts) {
     die();
   }
 }
+
+/*
+ * Get admin options for use on front end when active
+*/
 
 function chillMode() {
 

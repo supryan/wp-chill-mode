@@ -2,7 +2,7 @@
 Simple Wordpress maintenance mode plugin. Just add water and activate.
 - Requires at least: WordPress 3.5
 - Tested up to: WordPress 4.2.2
-- Current version: 0.1
+- Current version: 0.2
 
 ## Features
 - No extra settings, just activate it, do maintenance work, deactivate it.

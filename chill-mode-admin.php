@@ -1,4 +1,10 @@
 <?php
+/*
+*
+* Chill Mode - Admin Interface
+* Description: The admin markup, syling and server side scripting
+*
+*/
 
 if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
   if(1 === check_admin_referer('chill-mode')) {
