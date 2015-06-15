@@ -2,6 +2,7 @@
 /**
  * Plugin Name: Chill Mode
  * Description: A lightweight solution for manual maintenance. Simply activate the plugin and only administrators can see the website.
+ * Original Author: Johannes Reis (https://github.com/wpdocde/slim-maintenance-mode)
  * Version: 0.2
  */
 

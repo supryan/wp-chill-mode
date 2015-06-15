@@ -12,6 +12,10 @@ Simple Wordpress maintenance mode plugin. Just add water and activate.
 - Support for the following cache plugins: Cachify, Super Cache and W3 Total Cache.
 - Sends HTTP response status code 503 Service Unavailable, especially relevant for search engines.
 
+## Notes
+
+If you want to change the layout of the template or simply just add more to it, edit the `template.php` file.
+
 ---
 Originally built off the Slim Maintenance Mode plugin developed by [Johannes Ries](https://github.com/wpdocde/slim-maintenance-mode).
-Custom template and css/js additions by [Ryan Gordon](http://supryan.com).
+Admin interface and custom template functionality by [Ryan Gordon](http://supryan.com).
