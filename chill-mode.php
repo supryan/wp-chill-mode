@@ -105,23 +105,17 @@ new chillMode();
 
 function wp_killer($heading, $message, $title, $styles, $scripts) {
   nocache_headers();
+
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
-    if (!function_exists('http_response_code')) {
-      function http_response_code($newcode = NULL) {
-        static $code = 503;
-        if($newcode !== NULL) {
-          header('X-PHP-Response-Code: '.$newcode, true, $newcode);
-          if(!headers_sent())
-            $code = $newcode;
-        }
-        return $code;
-      }
-    }
+    header('HTTP/1.1 503 Service Temporarily Unavailable');
+    header('Status: 503 Service Temporarily Unavailable');
+    header('Retry-After: 300');//300 seconds
 
     $errorTemplate = 'template.php';
     require_once($errorTemplate);
     die();
+
   }
 }
 
@@ -130,7 +124,7 @@ function wp_killer($heading, $message, $title, $styles, $scripts) {
 */
 
 function chillMode() {
-
+  nocache_headers();
   $pageTitle = get_option('chillModeTitle') ? get_option('chillModeTitle') : 'We\'ll be right back.';
   $pageHeading = get_option('chillModeHeading') ? get_option('chillModeHeading') : 'Undergoing Maintenance.';
   $pageMessage = get_option('chillModeMessage') ? get_option('chillModeMessage') : 'Hang tight. We\'ll be right back.';
