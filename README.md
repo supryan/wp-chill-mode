@@ -1,5 +1,5 @@
-# Chill Mode
-Simple Wordpress maintenance mode plugin. Just add water and activate.
+# Chill Mode for Wordpress
+Simple Wordpress maintenance mode plugin with custom message display. Just add water and activate.
 - Requires at least: WordPress 3.5
 - Tested up to: WordPress 4.2.2
 - Current version: 0.2
