@@ -66,32 +66,65 @@ function chillModeDeactivation() {
 register_activation_hook(   __FILE__, 'chillModeActivation' );
 register_deactivation_hook( __FILE__, 'chillModeDeactivation' );
 
-/**
+/*
  * Alert message when active
 */
 function chillModeAdminAlert() {
-	echo '<div id="message" class="error fade"><p>' . __( '<strong>Maintenance mode</strong> is <strong>active</strong>!', 'maintenance-mode' ) . ' <a href="plugins.php#maintenance-mode">' . __( 'Deactivate it, when work is done.', 'maintenance-mode' ) . '</a></p></div>';
+  echo '<div id="message" class="error fade"><p>' . __( '<strong>Maintenance mode</strong> is <strong>active</strong>!', 'chill-mode' ) . ' <a href="plugins.php#maintenance-mode">' . __( 'Deactivate it, when work is done.', 'chill-mode' ) . '</a></p></div>';
 }
 if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) )
 add_action( 'network_admin_notices', 'chillModeAdminAlert' );
 add_action( 'admin_notices', 'chillModeAdminAlert' );
-add_filter( 'login_message',
-	function() {
-		return '<div id="login_error">' . __( '<strong>Maintenance mode</strong> is active!', 'maintenance-mode' ) . '</div>';
-	} );
+add_filter( 'login_message', function() {
+  return '<div id="login_error">' . __( '<strong>Maintenance mode</strong> is active!', 'chill-mode' ) . '</div>'; }
+);
 
-/**
+/*
+ * Admin Menu Class
+*/
+
+class chillMode {
+  function __construct() {
+    add_action('admin_menu', array(&$this,'chillModeAdminActions'));
+  }
+
+  function chillModeAdminActions() {
+    add_options_page( 'Chill Mode', 'Chill Mode', 'administrator', 'chill_mode', array(&$this,'chillModeAdminOptions'));
+  }
+
+  function chillModeAdminOptions() {
+    include('chill-mode-admin.php');
+  }
+}
+
+new chillMode();
+
+/*
  * Maintenance message when active
 */
-function chillMode() {
+
+function wp_killer($heading, $message, $title, $styles, $scripts) {
   nocache_headers();
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
-    $pluginPath = '<div id="plug" style="display: none;">'. plugin_dir_url( __FILE__ ) .'</div>';
-    $templatePath = '<div id="temp" style="display: none;">'. get_bloginfo('template_directory') .'</div>';
-    wp_die(''. $templatePath .''. $pluginPath .''. file_get_contents(''. plugin_dir_url( __FILE__ ) . 'template.php' .'') .'', 'We\'ll be right back.' , array('response' => 503));
+    header('HTTP', true, 503); // 503 Service Unavailable
+    $errorTemplate = 'template.php';
+    require_once($errorTemplate);
+    die();
   }
 }
+
+function chillMode() {
+
+  $pageTitle = get_option('chillModeTitle') ? get_option('chillModeTitle') : 'We\'ll be right back.';
+  $pageHeading = get_option('chillModeHeading') ? get_option('chillModeHeading') : 'Undergoing Maintenance.';
+  $pageMessage = get_option('chillModeMessage') ? get_option('chillModeMessage') : 'Hang tight. We\'ll be right back.';
+  $pageStyles = get_option('chillModeStyling') ? get_option('chillModeStyling') : '';
+  $pageScripts = get_option('chillModeScripts') ? get_option('chillModeScripts') : '';
+
+  return wp_killer($pageHeading, $pageMessage, $pageTitle, $pageStyles, $pageScripts);
+}
+
 add_action('get_header', 'chillMode');
 
 ?>

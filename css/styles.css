@@ -3,70 +3,29 @@
 Chill Mode
 ==================== */
 
-html {
-  background-size: 2px !important;
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #eeeeee;
 }
 
-body {
-  background-color: #3b3a3a;
-  color: #444;
-  font-family: "Open Sans", sans-serif;
-  margin: 2em auto;
-  padding: 1em 2em;
+.error-box {
+  background-color: white;
   max-width: 700px;
+  margin: 70px auto;
+  padding: 20px;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.13);
   box-shadow: 0 1px 3px rgba(0,0,0,0.13);
 }
 
-#error-page {
-  margin-top: 50px;
+hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #fafafa;
 }
 
-#error-page p:not(.message) {
-  display: none;
-}
 
-#error-page code {
-  font-family: Consolas, Monaco, monospace;
-}
-
-ul li {
-  margin-bottom: 10px;
-  font-size: 14px ;
-}
-
-a {
-  color: #21759B;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #D54E21;
-}
+/* Typography */
 
 h1 {
-  text-align: center;
-  border: none;
-  margin: 0;
-  clear: both;
-  color: #666;
-  padding: 0;
-  padding-bottom: 7px;
-}
-
-p {
-  text-align: center;
-  color: #999;
-}
-
-img {
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
-
-@media (max-width: 768px) {
-  img {
-    max-width: 223px;
-    height: auto;
-  }
+  font-size: 22px;
 }
