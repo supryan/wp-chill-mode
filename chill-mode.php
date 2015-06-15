@@ -107,7 +107,14 @@ function wp_killer($heading, $message, $title, $styles, $scripts, $image) {
   nocache_headers();
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
-    header('HTTP', true, 503); // 503 Service Unavailable
+    $protocol = "HTTP/1.0";		+    header('HTTP', true, 503); // 503 Service Unavailable
+    if ( "HTTP/1.1" == $_SERVER["SERVER_PROTOCOL"] ) {
+      $protocol = "HTTP/1.1";
+    }
+    header( "$protocol 503 Service Temporarily Unavailable", true, 503 );
+    header('Status: 503 Service Temporarily Unavailable');
+    header('Retry-After: 300'); //300 seconds
+
     $errorTemplate = 'template.php';
     require_once($errorTemplate);
     die();

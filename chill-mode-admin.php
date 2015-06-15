@@ -114,7 +114,7 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
     </tr>
     <tr>
       <th><label for="chillModeImage">Upload Image</label></th>
-      <td><input id="chillModeImage" type="file" name="chillModeImage"><?php echo $chillModeImage ? '<img src="'. $chillModeImage['url'] .'">' : ''; ?></td>
+      <td><input id="chillModeImage" type="file" name="chillModeImage" accept="image/*"><?php echo $chillModeImage ? '<img src="'. $chillModeImage['url'] .'">' : ''; ?></td>
     </tr>
   </table>
   <hr>
