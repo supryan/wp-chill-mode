@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Chill Mode
- * Description: A lightweight solution for manual maintenance. Simply activate the plugin and only administrators can see the website.
+ * Description: Simple Wordpress maintenance mode plugin with custom message display. Just add water and activate.
  * Original Author: Johannes Reis (https://github.com/wpdocde/slim-maintenance-mode)
  * Version: 0.2
  */
