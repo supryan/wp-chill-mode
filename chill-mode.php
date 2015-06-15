@@ -107,7 +107,18 @@ function wp_killer($heading, $message, $title, $styles, $scripts) {
   nocache_headers();
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
-    header('HTTP', true, 503); // 503 Service Unavailable
+    if (!function_exists('http_response_code')) {
+      function http_response_code($newcode = NULL) {
+        static $code = 503;
+        if($newcode !== NULL) {
+          header('X-PHP-Response-Code: '.$newcode, true, $newcode);
+          if(!headers_sent())
+            $code = $newcode;
+        }
+        return $code;
+      }
+    }
+
     $errorTemplate = 'template.php';
     require_once($errorTemplate);
     die();
