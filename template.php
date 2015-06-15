@@ -25,7 +25,12 @@
   </head>
   <body>
 
-    <div class="error-box">
+    <div class="error-box"><?php
+
+      if ($image && $image !== null) {
+        echo '<img src="'. $image['url'] .'" alt="'. $title .'">';
+      } ?>
+
       <h1><?php echo $heading; ?></h1>
       <hr>
       <p class="message"><?php echo $message; ?></p>

@@ -24,6 +24,11 @@ hr {
   border-bottom: 1px solid #fafafa;
 }
 
+img {
+  margin: 0 auto;
+  display: block;
+}
+
 /* Typography */
 
 h1 {
