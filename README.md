@@ -6,6 +6,7 @@ Simple Wordpress maintenance mode plugin. Just add water and activate.
 
 ## Features
 - No extra settings, just activate it, do maintenance work, deactivate it.
+- Admin interface to add custom page title, heading, message, styling, and scripts.
 - Multisite support
 - Alert message in the backend, when the plugin is active.
 - Support for the following cache plugins: Cachify, Super Cache and W3 Total Cache.
