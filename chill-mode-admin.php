@@ -19,6 +19,9 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
     $chillModeMessage = str_replace("\'", "'", $_POST['chillModeMessage']);
     update_option('chillModeMessage', $chillModeMessage);
 
+    $chillModeGA = $_POST['chillModeGA'];
+    update_option('chillModeGA', $chillModeGA);
+
     $chillModeStyling = $_POST['chillModeStyling'];
     update_option('chillModeStyling', $chillModeStyling);
 
@@ -51,6 +54,7 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
   $chillModeTitle = get_option('chillModeTitle');
   $chillModeHeading = get_option('chillModeHeading');
   $chillModeMessage = get_option('chillModeMessage');
+  $chillModeGA = get_option('chillModeGA');
   $chillModeStyling = get_option('chillModeStyling');
   $chillModeScripts = get_option('chillModeScripts');
   $chillModeImage = get_option('chillModeImage');
@@ -75,6 +79,11 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
   }
 
   /* Maintenance Mode Message */
+
+  div.updated, div.error {
+    margin: 5px 15px 2px 0px;
+  }
+
   #message {
     margin: 20px 15px 0 0;
     padding: 10px 12px;
@@ -111,7 +120,7 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
     </tr>
     <tr>
       <th><label for="chillModeMessage">Message</label></th>
-      <td><textarea id="chillModeMessage" type="text" name="chillModeMessage" placeholder="Hang tight. We'll be right back."><?php echo $chillModeMessage ? $chillModeMessage : ''; ?></textarea></td>
+      <td><textarea id="chillModeMessage" name="chillModeMessage" placeholder="Hang tight. We'll be right back."><?php echo $chillModeMessage ? $chillModeMessage : ''; ?></textarea></td>
     </tr>
     <tr>
       <th><label for="chillModeImage">Upload Image</label></th>
@@ -119,9 +128,13 @@ if(isset($_POST['chill_hidden']) && $_POST['chill_hidden'] == 'chill_mode') {
     </tr>
   </table>
   <hr>
-  <p>Add any custom styling or scripts below. No need to include the HTML tags. Just copy and paste.</p>
+  <p>Enter optional settings here such as your Google Analytics UA code or any custom styling or scripts below. No need to include the HTML tags. Just copy and paste.</p>
   <hr>
   <table class="form-table">
+    <tr>
+      <th><label for="chillModeGA">Google Analytics UA</label></th>
+      <td><input id="chillModeGA" type="text" name="chillModeGA" placeholder="UA-XXXXXXXX-X" value="<?php echo $chillModeGA ? $chillModeGA : ''; ?>"></td>
+    </tr>
     <tr>
       <th><label for="chillModeStyling">Custom Styles</label></th>
       <td><textarea id="chillModeStyling" type="text" name="chillModeStyling" class="customCode"><?php echo $chillModeStyling ? $chillModeStyling : ''; ?></textarea></td>
