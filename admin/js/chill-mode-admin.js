@@ -32,4 +32,15 @@ jQuery(document).ready(function($){
 
   });
 
+  // Remove Input values
+  $('input[type="checkbox"]').on('click', function() {
+    if ($(this).is(":checked")) {
+      $('#upload_image').css('color', 'white');
+      $('img').hide();
+    } else if ($(this).is(":not(:checked)")) {
+      $('#upload_image').css('color', 'black');
+      $('img').show();
+    }
+  });
+
 });
