@@ -44,7 +44,7 @@
     <div class="error-box"><?php
 
       if ($image && $image !== null) {
-        echo '<img src="'. $image['url'] .'" alt="'. $title .'">';
+        echo '<img src="'. $image .'" alt="'. $title .'">';
       } ?>
 
       <h1><?php echo $heading; ?></h1>

@@ -86,6 +86,16 @@ add_filter( 'login_message', function() {
 class chillMode {
   function __construct() {
     add_action('admin_menu', array(&$this,'chillModeAdminActions'));
+    add_action('admin_enqueue_scripts', array(&$this,'chillModeAdminScripts'));
+  }
+
+  // Get scripts
+  function chillModeAdminScripts() {
+    if (isset($_GET['page']) && $_GET['page'] == 'chill_mode') {
+      wp_enqueue_media();
+      wp_register_script('chill-mode-js', WP_PLUGIN_URL.'/wp-chill-mode/admin/js/chill-mode-admin.js', array('jquery'));
+      wp_enqueue_script('chill-mode-js');
+    }
   }
 
   function chillModeAdminActions() {
@@ -93,7 +103,7 @@ class chillMode {
   }
 
   function chillModeAdminOptions() {
-    include('chill-mode-admin.php');
+    include('admin/chill-mode-admin.php');
   }
 }
 
@@ -107,13 +117,13 @@ function wp_killer($heading, $message, $gaID, $title, $styles, $scripts, $image)
   nocache_headers();
   if(!current_user_can('edit_themes') || !is_user_logged_in()) {
 
-    $protocol = "HTTP/1.0";		+    header('HTTP', true, 503); // 503 Service Unavailable
+    $protocol = "HTTP/1.0"; + header('HTTP', true, 503); // 503 Service Unavailable
     if ( "HTTP/1.1" == $_SERVER["SERVER_PROTOCOL"] ) {
       $protocol = "HTTP/1.1";
     }
-    header( "$protocol 503 Service Temporarily Unavailable", true, 503 );
+    header("$protocol 503 Service Temporarily Unavailable", true, 503 );
     header('Status: 503 Service Temporarily Unavailable');
-    header('Retry-After: 300'); //300 seconds
+    header('Retry-After: 300'); // 300 seconds
 
     $errorTemplate = 'template.php';
     require_once($errorTemplate);
